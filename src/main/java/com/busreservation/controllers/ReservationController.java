@@ -1,4 +1,4 @@
-package com.busreservation;
+package com.busreservation.controllers;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.busreservation;
+package com.busreservation.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.busreservation.bean.Journey,java.util.*"%>
+	pageEncoding="UTF-8"
+	import="com.busreservation.bean.Journey,java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,8 @@
 	<%
 		ArrayList<Journey> incomeDetails = (ArrayList<Journey>) request.getAttribute("incomeDetails");
 	%>
-	<form align="center" action="reservation.jsp" onsubmit="return display();" name="form" method="post">
+	<form align="center" action="reservation.jsp"
+		onsubmit="return display();" name="form" method="post">
 		<table border="1" align="center">
 			<thead>
 				<tr>
@@ -25,17 +27,22 @@
 			</thead>
 
 
-			<tr>
+
 				<%
 					if (incomeDetails != null) {
 						for (Journey income : incomeDetails) {
-							out.print("<tr><td>" + income.getBus().getBus_id() + "</td><td>" + income.getCost()+ "</td>" + "<td>" + income.getJourney_date() + "</td></tr>");
-						}
-					} else {
-						out.println("no buses available");
-					}
 				%>
+			<tr>
+				<td><%=income.getBus().getBus_id()%></td>
+				<td><%=income.getCost()%></td>
+				<td><%=income.getJourney_date()%></td>
 			</tr>
+			<%
+				}
+				} else {
+					out.println("no buses available");
+				}
+			%>
 		</table>
 	</form>
 

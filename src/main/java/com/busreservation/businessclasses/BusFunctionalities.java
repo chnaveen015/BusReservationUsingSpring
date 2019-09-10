@@ -70,7 +70,7 @@ public class BusFunctionalities {
 					if (availableSeats != null && availableSeats > 0)
 					{
 						busDetails.setAvailable_seats(availableSeats);
-					if (busDetails.getAvailable_seats() > details.getNoOfSeats()) {
+					if (busDetails.getAvailable_seats() >=	 details.getNoOfSeats()) {
 						busDetails.setFare(ticketCostDao.getRequiredFare(busDetails));
 						busDetailsList.add(busDetails);
 					}
