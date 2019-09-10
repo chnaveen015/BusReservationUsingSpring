@@ -3,11 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body bgcolor="D3D3D3">
+
+			<%@include file="Welcome.jsp" %> 
+			<br>
 			<% String status=(String)request.getAttribute("status"); %>
 			<form action="CancelTicket" align="center" method="post"  name="form">
 		<table align="center">

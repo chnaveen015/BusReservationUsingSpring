@@ -11,7 +11,7 @@
 			<br><br>
 			<%Integer count=(Integer)request.getAttribute("count");
 			%>
-			<% if(count!=0)
+			<% if(count>=0)
 			{%>
 				<h3>No of Buses are:<%=count %></h3>
 				<% }%>

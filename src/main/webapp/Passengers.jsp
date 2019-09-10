@@ -14,7 +14,7 @@
 		ArrayList<Reservation> passengersList= (ArrayList<Reservation>) request.getAttribute("passengers");
 	%>
 	<form align="center">
-		<table border="1" align="center">
+		<table border="1" align="center" width="100%">
 			<thead>
 				<tr>
 					<th>PNR</th>
@@ -31,24 +31,32 @@
 			</thead>
 
 
-			<tr>
 				<%
 					if(passengersList!=null)
 					{
 						
 					for(Reservation passenger:passengersList)
-					out.print("<tr><td>" + passenger.getPnr() + "</td>" + "<td>" + passenger.getBus_id() + "</td><td>"
-							+ passenger.getName() + "</td><td>" + passenger.getId_proof_no() + "</td><td>" + passenger.getNo_of_seats()
-							+ "</td>" + "<td>" + passenger.getSource() + "</td><td>" + passenger.getDestination() + "</td><td>"
-							+ passenger.getDateOfJourney() + "</td><<td>" + passenger.getJourney().getBus().getBus_type() + "<td>"
-							+ passenger.getFare() + "</td></tr>");
+					{%>
+					<tr>
+				<td><%=passenger.getPnr()%></td>
+				<td><%=passenger.getBus_id()%></td>
+				<td><%=passenger.getName()%></td>
+				<td><%=passenger.getId_proof_no()%></td>
+				<td><%=passenger.getNo_of_seats()%></td>
+				<td><%=passenger.getSource()%></td>
+				<td><%=passenger.getDestination()%></td>
+				<td><%=passenger.getDateOfJourney()%></td>
+				<td><%=passenger.getJourney().getBus().getBus_type()%></td>
+				<td><%=passenger.getFare()%></td>
+			</tr>
+					<%
+						}
 					}
 					else
-					{
-						out.println("no passengers available!");
-					}
+					{%>
+					<tr><td>no passengers available!</td></tr>
+				<%	}
 				%>
-			</tr>
 		</table>
 		
 

@@ -8,7 +8,7 @@
 <title>No of Buses</title>
 </head>
 <body>
-		<%@ include file="STARTFROMHERE.jsp"%>
+		<%@ include file="Admin.jsp"%>
 	<hr>
 	<br>
 	<br>

@@ -12,6 +12,7 @@
 	<br>
 	<br>
 	<br>
+	<hr>
 		<form action="NoPassengers" align="center"  name="form" method="post">
 			<table align="center">
 				<tr>

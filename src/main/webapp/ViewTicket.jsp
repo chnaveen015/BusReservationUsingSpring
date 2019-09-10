@@ -7,7 +7,7 @@
 <title>View Ticket</title>
 </head>
 <body>
-	
+	<%@include file="Welcome.jsp" %>
 	<br>
 	<br>
 	<br>
