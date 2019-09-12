@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,24 +43,24 @@ public class BusResources {
 	@Autowired
 	JourneyDao journeyDao;
 
-	
+
 	/*
 	 * It will make a call to TicketCostDao and get List of available  sources.
 	 */
-	@RequestMapping(value = "/Getsource", method = RequestMethod.GET)
+	@GetMapping(value = "/Getsource")
 	public ArrayList<String> getSources() {
 		return ticketCostDao.getSources();
 
 	}
-	
+
 	/*
 	 * It will make a call to TicketCostDao and get List Available Destinations.
 	 */
-	@RequestMapping(value = "/Getdestination", method = RequestMethod.GET)
+	@GetMapping(value = "/Getdestination")
 	public ArrayList<String> getDestination() {
 		return ticketCostDao.getDestinations();
 	}
-	
+
 	/*
 	 * it is called from Available Buses Controller
 	 * it make a call to getAvailableBuses Method located in  business class namely BusFunctionalities
@@ -79,10 +80,10 @@ public class BusResources {
 		if(ticket.isPresent())
 			return ticket.get();
 		else
-		 return null;
+			return null;
 	}
-	
-	
+
+
 	/*
 	 * It will make a call to getPnr method located in PnrGeneration Class
 	 */
@@ -90,8 +91,8 @@ public class BusResources {
 	public Integer generatePnr() {
 		return pnrGenerator.getPnr();
 	}
-	
-	
+
+
 	/*
 	 * This Method returns the status of the reservation of the ticket.
 	 * This method make certain calls to different methods to decrease the number of seats after reservation
@@ -106,13 +107,13 @@ public class BusResources {
 			Integer updateCost=journeyDao.increaseCost(reserveTicket.getFare(),reserveTicket.getJourney().getJourney_id());
 			if(updateCost!=null && updateCost>0)
 			{
-				 if(reservation.insertTicketDetails(reserveTicket)!=null);
-				 return "yes";
+				if(reservation.insertTicketDetails(reserveTicket)!=null);
+				return "yes";
 			}
-				
+
 		}
 		return "no";
-		
+
 	}
 	/*
 	 * This Method Returns the journey details based on the journey id.
@@ -120,11 +121,11 @@ public class BusResources {
 	@RequestMapping(value="GetJourneyDetails",method=RequestMethod.POST)
 	public Journey getJourneyDetails(@RequestBody Integer journey_id)
 	{
-		
+
 		return journeyDao.getJourneyDetails(journey_id);
-		
+
 	}
-	
+
 	/*
 	 * This Method returns the status of the cancellation of the ticket.
 	 * This method make certain calls to different methods to increase the number of seats after cancellation
@@ -142,12 +143,12 @@ public class BusResources {
 			Integer updateCost=journeyDao.duductCost(reservedTicket.getFare(),reservedTicket.getJourney().getJourney_id());
 			if(updateCost!=null && updateCost>=0)
 			{
-				 if(reservation.removeTicketDetails(reservedTicket)!=null);
-				 return "yes";
+				if(reservation.removeTicketDetails(reservedTicket)!=null);
+				return "yes";
 			}
-				
+
 		}
 		return "no";
-		
+
 	}
 }

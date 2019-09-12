@@ -1,6 +1,6 @@
 package com.busreservation.controllers;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.busreservation.bean.BasicDetailsBean;
-
 @Controller
 public class UserController {
 	@Autowired
 	Environment environment;
-	
+
 	/* called From Welcome.jsp 
 	 * it will redirect to another jsp pages based on the action performed.
 	 * It will forward if action is Reserve Ticket Available Source and Destination List to jsp page to display there
@@ -39,21 +37,21 @@ public class UserController {
 			 */
 			ResponseEntity<List<String>> responseEntity = rest.exchange(url+"/Getsource", HttpMethod.GET,
 					null, new ParameterizedTypeReference<List<String>>() {
-					});
+			});
 			session.setAttribute("sources", responseEntity.getBody());
 			/*
 			 * It make Rest Call To GetDestination located in BusResources to get available Destination As a list.
 			 */
 			ResponseEntity<List<String>> responseEntity1 = rest.exchange(url+"/Getdestination",
 					HttpMethod.GET, null, new ParameterizedTypeReference<List<String>>() {
-					});
+			});
 			session.setAttribute("destinations", responseEntity1.getBody());
 			modelAndView.setViewName("User");
 			return modelAndView;
 		}
 		else if (operation.equals("CancelTicket")) {
-				modelAndView.setViewName("CancelTicket");
-				return modelAndView;
+			modelAndView.setViewName("CancelTicket");
+			return modelAndView;
 		} else if (operation.equals("viewticket")) {
 			modelAndView.setViewName("ViewTicket");
 			return modelAndView;

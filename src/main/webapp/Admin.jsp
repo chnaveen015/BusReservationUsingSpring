@@ -18,7 +18,7 @@
 	<a href="noOfBusesController">View Total No of buses</a>
 	<br>
 	<br>
-	<a href="NoOfPassengers.jsp">View No of Passengers</a>
+	<a href="NoOfPassengerDetials">View No of Passengers</a>
 	<br>
 	<br>
 	

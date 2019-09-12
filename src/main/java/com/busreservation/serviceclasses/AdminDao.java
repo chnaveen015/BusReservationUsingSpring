@@ -16,20 +16,20 @@ import com.busreservation.repositories.ReservationRepository;
 
 @Service
 public class AdminDao {
-		@Autowired
-		JourneyRepository journeyRepo;
-		@Autowired
-		ReservationRepository reservatioRepo;
+	@Autowired
+	JourneyRepository journeyRepo;
+	@Autowired
+	ReservationRepository reservatioRepo;
 
 	public ArrayList<Journey> viewIncome(String dateOfJourney) {
-		// TODO Auto-generated method stub
 		
+
 		return journeyRepo.getIncomDetails(Date.valueOf(dateOfJourney));
 	}
 
 	public ArrayList<Reservation> viewPassengers(Details details) {
-		// TODO Auto-generated method stub
+	
 		return reservatioRepo.getPassengers(details.getDate(),details.getBus_id());
 	}
-	
+
 }

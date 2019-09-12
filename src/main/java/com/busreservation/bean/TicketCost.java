@@ -1,12 +1,9 @@
 package com.busreservation.bean;
 
-import javax.persistence.Entity;
+import javax.persistence.Entity; 
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -15,22 +12,21 @@ import javax.validation.constraints.NotNull;
 public class TicketCost {
 	@Id
 	private int routeno;
-
-	public int getRouteno() {
-		return routeno;
-	}
-
-	public void setRouteno(int routeno) {
-		this.routeno = routeno;
-	}
-
 	@NotNull
 	private String source;
 	@NotNull
 	private String destination;
 	@NotNull
 	private int fare;
-
+	@ManyToOne
+	@JoinColumn(name = "bus_id")
+	private Bus bus;
+	public int getRouteno() {
+		return routeno;
+	}
+	public void setRouteno(int routeno) {
+		this.routeno = routeno;
+	}
 	public int getFare() {
 		return fare;
 	}
@@ -38,11 +34,6 @@ public class TicketCost {
 	public void setFare(int fare) {
 		this.fare = fare;
 	}
-
-	@ManyToOne
-	@JoinColumn(name = "bus_id")
-	private Bus bus;
-
 	public String getSource() {
 		return source;
 	}

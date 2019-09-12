@@ -14,7 +14,7 @@ import com.busreservation.serviceclasses.LoginDao;
 public class LoginResource {
 	@Autowired
 	LoginDao loginDao;
-	
+
 	/*
 	 * This method returns whether entered details are valid or invalid.
 	 */
@@ -25,8 +25,8 @@ public class LoginResource {
 		if(user!=null)
 			return "valid";
 		else 
-		return "invalid" ;
-		
+			return "invalid" ;
+
 	}
-		
+
 }

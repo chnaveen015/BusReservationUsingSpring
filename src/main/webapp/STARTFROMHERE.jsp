@@ -11,8 +11,8 @@ marquee {
 	padding: 10px 0;
 	background-color: lightblue;
 }
-input:hover{
-background-color: green;
+#operation:hover{
+background-color: blue;
 }
 
 </style>
@@ -29,8 +29,8 @@ background-color: green;
 				</tr>
 			</thead>
 			<tr>
-				<td><a  href="Login.jsp"><input type="button" name="operation" value="Admin"></a>
-					<a href="Welcome.jsp"><input type="button" name="operation" value="User"></a></td>
+				<td><a  href="Login.jsp"><input id="operation" type="button" name="operation" value="Admin"></a>
+					<a href="Welcome.jsp"><input id="operation" type="button" name="operation" value="User"></a></td>
 			</tr>
 		</table>
 		<hr>

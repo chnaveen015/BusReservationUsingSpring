@@ -10,7 +10,7 @@
 
 <body>
 	<%@include file="STARTFROMHERE.jsp"%>
-	<% String msg=(String)request.getAttribute("msg");
+	<% String message=(String)request.getAttribute("message");
 	%>
 	<form  action="LoginValidator" method="post" name="form">
 		<p>
@@ -22,8 +22,8 @@
 		</p>
 	
 		<input class="login" type="submit" value="Enter Details" />
-		<% if(msg!=null) {%>
-		<h3 align="center"><%=msg %></h3>
+		<% if(message!=null) {%>
+		<h3 align="center"><%=message %></h3>
 		<%} %>
 	</form>
 </body>

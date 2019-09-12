@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*"%>
+	pageEncoding="UTF-8" import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,7 @@
 <title>No of Buses</title>
 </head>
 <body>
-		<%@ include file="Admin.jsp"%>
+	<%@ include file="Admin.jsp"%>
 	<hr>
 	<br>
 	<br>
@@ -17,9 +17,6 @@
 	ArrayList<String> destinations = (ArrayList<String>) session.getAttribute("destinations");
 
 	%>
-
-
-
 	<form action="GetNoOfBuses" method="post" name="form">
 		<table align="center">
 			<tr>
@@ -55,17 +52,14 @@
 			</tr>
 			<tr>
 				<td>StartingDate</td>
-				<td><input type="date"  name="startDate" required></td>
+				<td><input type="date" name="startDate" required></td>
 			</tr>
 			<tr>
 				<td>EndingDate:</td>
-				<td><input type="date" name="endDate"
-					required></td>
+				<td><input type="date" name="endDate" required></td>
 			</tr>
 			<tr>
-
-
-			<td><input type="submit" name="submit"></td>
+				<td><input type="submit" name="submit"></td>
 			</tr>
 		</table>
 	</form>
