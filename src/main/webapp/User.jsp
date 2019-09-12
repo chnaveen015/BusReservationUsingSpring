@@ -14,7 +14,7 @@
 	<%
 		ArrayList<String> sources = (ArrayList<String>) session.getAttribute("sources");
 	ArrayList<String> destinations = (ArrayList<String>) session.getAttribute("destinations");
-	String msg=(String)request.getAttribute("msg");
+	String message=(String)request.getAttribute("message");
 	%>
 	<%/*
 			It will Redirect to Avaiable Buses Controller
@@ -73,8 +73,8 @@
 				<td><input type="submit"></td>
 			</tr>
 		</table>
-		<% if(msg!=null){ %>
-		<h3 align="center"><%=msg %></h3>
+		<% if(message!=null){ %>
+		<h3 align="center"><%=message %></h3>
 		<%} %>
 	</form>
 			

@@ -107,5 +107,5 @@ public class Reservation {
 				+ no_of_seats + ", dateOfJourney=" + dateOfJourney + ", fare=" + fare + ", id_proof_no=" + id_proof_no
 				+ "]";
 	}
-	
+
 }

@@ -1,6 +1,6 @@
 package com.busreservation.businessclasses;
 
-import java.sql.Date;
+import java.sql.Date; 
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -12,7 +12,6 @@ import com.busreservation.bean.Bus;
 import com.busreservation.bean.BusDetails;
 import com.busreservation.bean.Journey;
 import com.busreservation.bean.NoOfBusesDetails;
-import com.busreservation.bean.Reservation;
 import com.busreservation.bean.TicketCost;
 import com.busreservation.serviceclasses.JourneyDao;
 import com.busreservation.serviceclasses.SeatAvailableDao;
@@ -28,16 +27,22 @@ public class BusFunctionalities {
 	JourneyDao journeyDao;
 	@Autowired
 	SeatAvailableDao seatAvailableDao;
-
+	/**
+	 * 
+	 * @param details
+	 * @return list of BusDetails
+	 * This method takes journey details as a input and
+	 * checks the availability of the buses based on the no of seats,journey date and
+	 * returns list of available buses containing details like fare,bus type,available seats etc.
+	 */
 	public ArrayList<BusDetails> getAvailableBus(BasicDetailsBean details) {
 		// TODO Auto-generated method stub
 		ArrayList<TicketCost> sourceList=ticketCostDao.getSourceList(details);
 		ArrayList<TicketCost> destinationList=ticketCostDao.getDestinationList(details);
 
-		Iterator sources = sourceList.iterator();
-		Iterator destinations = destinationList.iterator();
+		Iterator<TicketCost> sources = sourceList.iterator();
 		TicketCost source;
-		
+
 		Bus sourceBus, destinationBus,bus;
 		ArrayList<BusDetails> busDetailsList = new ArrayList<BusDetails>();
 		while (sources.hasNext()) {
@@ -45,53 +50,56 @@ public class BusFunctionalities {
 			source = (TicketCost) sources.next();
 			for(TicketCost destination:destinationList)
 			{
-			sourceBus = source.getBus();
-			destinationBus = destination.getBus();
-			if (sourceBus.getBus_id() == destinationBus.getBus_id()
-					&& source.getRouteno() <= destination.getRouteno()) {
-				BusDetails busDetails = new BusDetails();
+				sourceBus = source.getBus();
+				destinationBus = destination.getBus();
+				if (sourceBus.getBus_id() == destinationBus.getBus_id()
+						&& source.getRouteno() <= destination.getRouteno()) {
+					BusDetails busDetails = new BusDetails();
 
-				busDetails.setBus_id(sourceBus.getBus_id());
-				busDetails.setRouteno1(source.getRouteno());
-				busDetails.setRouteno2(destination.getRouteno());
-				busDetails.setJourney_date(Date.valueOf(details.getDateOfJourney()));
-				
-				ArrayList<Journey>JourneyList=journeyDao.getJourney(busDetails);
-				for (Journey journey : JourneyList) {
-					bus = journey.getBus();
-					if (bus.getBus_id() == busDetails.getBus_id()) {
-						busDetails.setJourney_id(journey.getJourney_id());
-						busDetails.setBus_type(bus.getBus_type());
-						break;
+					busDetails.setBus_id(sourceBus.getBus_id());
+					busDetails.setRouteno1(source.getRouteno());
+					busDetails.setRouteno2(destination.getRouteno());
+					busDetails.setJourney_date(Date.valueOf(details.getDateOfJourney()));
+
+					ArrayList<Journey>JourneyList=journeyDao.getJourney(busDetails);
+					for (Journey journey : JourneyList) {
+						bus = journey.getBus();
+						if (bus.getBus_id() == busDetails.getBus_id()) {
+							busDetails.setJourney_id(journey.getJourney_id());
+							busDetails.setBus_type(bus.getBus_type());
+							break;
+						}
 					}
-				}
-				if (busDetails.getJourney_id() != 0) {
-					Integer availableSeats = seatAvailableDao.getAvailableSeats(busDetails);
-					if (availableSeats != null && availableSeats > 0)
-					{
-						busDetails.setAvailable_seats(availableSeats);
-					if (busDetails.getAvailable_seats() >=	 details.getNoOfSeats()) {
-						busDetails.setFare(ticketCostDao.getRequiredFare(busDetails));
-						busDetailsList.add(busDetails);
+					if (busDetails.getJourney_id() != 0) {
+						Integer availableSeats = seatAvailableDao.getAvailableSeats(busDetails);
+						if (availableSeats != null && availableSeats > 0)
+						{
+							busDetails.setAvailable_seats(availableSeats);
+							if (busDetails.getAvailable_seats() >=	 details.getNoOfSeats()) {
+								busDetails.setFare(ticketCostDao.getRequiredFare(busDetails));
+								busDetailsList.add(busDetails);
+							}
+						}
 					}
-				}
 				}
 			}
 		}
-		}
 		return busDetailsList;	
 	}
-	
+	/**
+	 * 
+	 * @param details
+	 * @return count of no of buses.
+	 */
 	public Integer getNoOfBuses(NoOfBusesDetails details) {
 		// TODO Auto-generated method stub
 		ArrayList<TicketCost> sourceList=ticketCostDao.getSourcesList(details.getSource());
 		ArrayList<TicketCost> destinationList=ticketCostDao.getDestinationList(details.getDestination());
-		Iterator sources = sourceList.iterator();
-		Iterator destinations = destinationList.iterator();
+		Iterator<TicketCost> sources = sourceList.iterator();
+		Iterator<TicketCost> destinations = destinationList.iterator();
 		TicketCost source, destination;
 		Bus sourceBus, destinationBus;
 		int count = 0;
-		ArrayList<BusDetails> busDetailsList = new ArrayList<BusDetails>();
 		while (sources.hasNext() && destinations.hasNext()) {
 			source = (TicketCost) sources.next();
 			destination = (TicketCost) destinations.next();
@@ -100,9 +108,8 @@ public class BusFunctionalities {
 			if (sourceBus.getBus_id() == destinationBus.getBus_id()
 					&& sourceBus.getBus_id() == destinationBus.getBus_id()) {
 				BusDetails busDetails = new BusDetails();
-				BusDetails b = new BusDetails();
 				busDetails.setBus_id(sourceBus.getBus_id());
-				
+
 				count+=journeyDao.getBusCount(busDetails,details);
 			}
 		}	

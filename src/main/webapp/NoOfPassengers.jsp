@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,17 +13,26 @@
 	<br>
 	<br>
 	<hr>
-		<form action="NoPassengers" align="center"  name="form" method="post">
+	<%ArrayList<Integer>busesId=(ArrayList<Integer>)session.getAttribute("busesId"); %>
+		<form action="NumberOfPassengers" align="center"  name="form" method="post">
 			<table align="center">
 				<tr>
-					<td>Enter the Bus ID:</td>
-					<td><input type="number" name="bus_id" rquired></td>
-					<p id='enter'>
+					<td>Chosse the Bus :</td>
+					<td><select name="bus_id">
+
+						<%
+							for (Integer buseId: busesId) {
+						%>
+						<option>
+							<%=buseId%>      
+						</option>
+						<%} %>
+				</select></td>
 				</tr>
 				<tr>
 					<td>Enter The Date:</td>
 					<td><input type="date" name="date" required></td>
-					<p id='enter1'>
+					
 				</tr>
 				<tr>
 					<td><input type="submit" value="submit"></td>

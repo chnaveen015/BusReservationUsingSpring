@@ -20,7 +20,7 @@ marquee {
 			<thead align="center">
 				<tr>
 					<th><marquee behavior="scroll" direction="left">
-							<h3>Welcome To Online Reservation</h3>
+							<h3>Welcome To Online Bus Reservation</h3>
 						</marquee></th>
 				</tr>
 			</thead>

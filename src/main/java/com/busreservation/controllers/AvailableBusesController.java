@@ -1,8 +1,6 @@
 package com.busreservation.controllers;
 
-import java.util.ArrayList; 
-import java.util.List;
-
+import java.util.ArrayList;  
 import javax.servlet.http.HttpSession;
 
 
@@ -35,7 +33,7 @@ public class AvailableBusesController {
 	 */
 	@RequestMapping(value = "/GetAvailableBuses", method = RequestMethod.POST)
 	public ModelAndView getBuses(BasicDetailsBean details, HttpSession session) {
-		
+
 		String port = environment.getProperty("local.server.port");
 		String url="http://localhost:"+port+"/BusResources/AvailableBuses";
 		ModelAndView modelAndView = new ModelAndView();
@@ -43,6 +41,7 @@ public class AvailableBusesController {
 		if (!details.getSource().equals(details.getDestination())) {
 			HttpEntity<BasicDetailsBean> requestEntity = new HttpEntity<>(details, requestHeaders);
 			RestTemplate rest = new RestTemplate();
+
 			/*
 			 * It Will make a Rest call to Available buses and get list of available buses
 			 * located in the BusResources and return to ViewBuses.jsp page
@@ -56,12 +55,12 @@ public class AvailableBusesController {
 			if (responseEntity.getBody().size() != 0)
 				modelAndView.setViewName("ViewBuses");
 			else {
-				modelAndView.addObject("msg", "No Buses Are Available!");
+				modelAndView.addObject("message", "No Buses Are Available!");
 				modelAndView.setViewName("User");
 			}
 		} else {
 			modelAndView.setViewName("User");
-			modelAndView.addObject("msg", "Source And Destination Should Not Be Same!");
+			modelAndView.addObject("message", "Source And Destination Should Not Be Same!");
 
 		}
 		return modelAndView;

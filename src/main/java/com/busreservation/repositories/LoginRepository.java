@@ -8,6 +8,10 @@ import com.busreservation.bean.Login;
 
 @Repository
 public interface LoginRepository extends JpaRepository<Login, String> {
-			@Query("Select login from Login login where login.username=?1 and login.password=?2")
-			public Login getUserDetails(String username,String password);
+	/* 
+	 * This method returns login object if username and password are correct 
+	 * else returns null.
+	 */
+	@Query("Select login from Login login where login.username=?1 and login.password=?2")
+	public Login getUserDetails(String username,String password);
 }

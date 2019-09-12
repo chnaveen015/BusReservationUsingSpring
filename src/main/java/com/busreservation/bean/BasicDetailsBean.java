@@ -1,5 +1,4 @@
 package com.busreservation.bean;
-import java.sql.Date;
 
 public class BasicDetailsBean {
 	@Override

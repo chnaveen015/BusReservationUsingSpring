@@ -19,5 +19,5 @@ public class Details {
 	public String toString() {
 		return "Details [date=" + date + ", bus_id=" + bus_id + "]";
 	}
-	
+
 }
